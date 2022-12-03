@@ -1,0 +1,17 @@
+﻿@model IEnumerable<n01569183Cumulative2.Models.Student>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of all Students</h2>
+<form action="/Student/List" method="GET">
+    <input type="text" name="SearchParam" />
+    <input type="submit" value="Search" />
+</form>
+<p>Showing @Model.Count() results.</p>
+
+
+@foreach(var student in Model)
+            {
+                <p><a href="~/Student/Show/@student.StudentId">@student.StudentFName @student.StudentLName</a></p>
+            }

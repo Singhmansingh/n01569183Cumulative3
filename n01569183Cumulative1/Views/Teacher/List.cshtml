@@ -1,0 +1,81 @@
+﻿@model IEnumerable<n01569183Cumulative2.Models.Teacher>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<form action="/Teacher/List" method="GET">
+    <h4 id="advancedSettings">Advanced Search</h4>
+    <label for="Name">Name</label>
+    <input id="Name" type="text" name="SearchParam" />
+
+    <span>
+        <label for="Salary">Salary</label>
+
+        <input id="salaryLess" type="radio" value="Less" name="SalaryOperator">
+        <label for="salaryLess" class="label label-primary">Less</label>
+        <input id="salaryEqual" type="radio" checked value="Equal" name="SalaryOperator">
+        <label for="salaryEqual" class="label label-primary">Equal</label>
+        <input id="salaryMore" type="radio" value="Greater" name="SalaryOperator">
+        <label for="salaryMore" class="label label-primary">Greater</label>
+
+        <input id="Salary" type="text" name="SalaryParam" />
+    </span>
+
+    <span>
+        <label for="HireDate">Hire Date</label>
+
+        <input id="hireBefore" type="radio" value="Less" name="HireOperator">
+        <label for="hireBefore" class="label label-primary">before</label>
+        <input id="hireEqual" type="radio" checked value="Equal" name="HireOperator">
+        <label for="hireEqual" class="label label-primary">equal</label>
+        <input id="hireAfter" type="radio" value="Greater" name="HireOperator">
+        <label for="hireAfter" class="label label-primary">after</label>
+
+        <input for="HireDate" type="text" name="HireParam" />
+    </span>
+
+
+    <input type="submit" class="btn btn-primary" value="Search" />
+</form>
+<p>Showing @Model.Count() results</p>
+
+<button onclick="LoadNewTeacherForm()" class="btn btn-success">New Teacher</button>
+
+<div id="FullScreenDark" class="popup-bg hide">
+    <div id="PopupForm" class="popup"></div>
+</div>
+
+<hr />
+
+@foreach (var teacher in Model)
+{
+    <p><a href="~/Teacher/Show/@teacher.Id">@teacher.FName @teacher.LName</a></p>
+}
+
+<script>
+
+    function gid(id) {
+        return document.getElementById(id);
+    }
+
+    function LoadNewTeacherForm() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/Teacher/New");
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status === 200) {
+                    gid("PopupForm").innerHTML = xhr.responseText;
+                    gid("FullScreenDark").classList.toggle('hide');
+                }
+            }
+        }
+    }
+
+    function ClosePopup() {
+        gid("PopupForm").innerHTML = null;
+        gid("FullScreenDark").classList.toggle('hide');
+        
+    }
+</script>

@@ -1,0 +1,15 @@
+﻿@model List<n01569183Cumulative2.Models.Class>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of all Classes</h2>
+<form action="/Class/List" method="GET">
+    <input type="text" name="SearchParam" />
+    <input type="submit" value="Search" />
+</form>
+<p>Showing @Model.Count() results.</p>
+@foreach (var course in Model)
+{
+    <p><a href="~/Class/Show/@course.ClassId">@course.ClassCode - @course.ClassName</a></p>
+}

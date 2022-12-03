@@ -1,0 +1,89 @@
+﻿@model n01569183Cumulative2.Models.Teacher
+@{
+    ViewBag.Title = "Show";
+}
+
+<div class="go-back-row">
+<a href="~/Teacher/List">< Return to List</a>
+</div>
+
+<h1>@Model.FName @Model.LName</h1>
+<div style="display:flex; justify-content:space-between; align-items:center;">
+    <p class="caption">Teacher</p>
+</div>
+
+<hr />
+
+<h2>General Information</h2>
+<table class="table">
+    <tr>
+        <th>Employee Number</th>
+        <th>Hire Date</th>
+        <th>Salary (/hr)</th>
+    </tr>
+    <tr>
+        <td>@Model.EmployeeNumber</td>
+        <td>@Model.HireDate</td>
+        <td>@Model.Salary</td>
+    </tr>
+</table>
+
+
+
+
+
+
+@if (@Model.classList.Count > 0)
+{
+    <h2>Classes</h2>
+    <table class="table">
+        <tr>
+            <th>Class Code</th>
+            <th>Class Name</th>
+        </tr>
+        @foreach (var classData in @Model.classList)
+        {
+            <tr>
+                <td><a href="~/Class/Show/@classData.ClassId">@classData.ClassCode</a></td>
+                <td>@classData.ClassName</td>
+            </tr>
+        }
+
+    </table>
+
+}
+
+@{
+    <button class="btn btn-danger" onclick="LoadDeleteConfirm(@Model.Id)">Delete</button>
+}
+
+<div id="FullScreenDark" class="popup-bg hide">
+    <div id="PopupForm" class="popup"></div>
+</div>
+<script>
+
+    function gid(id) {
+        return document.getElementById(id);
+    }
+
+    function LoadDeleteConfirm(id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/Teacher/DeleteConfirm/" + id);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText)
+                    gid("PopupForm").innerHTML = xhr.responseText;
+                    gid("FullScreenDark").classList.toggle('hide');
+
+                }
+            }
+        }
+    }
+
+    function ClosePopup() {
+        gid("FullScreenDark").classList.toggle('hide');
+    }
+</script>
+

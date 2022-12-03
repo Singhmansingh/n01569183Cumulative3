@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "New";
+    Layout = "";
+}
+
+<div  class="popup-container">
+    <button id="close" class="close" onclick="ClosePopup()">✖</button>
+    <h2>New Teacher</h2>
+    <form method="post" action="/Teacher/Create" class="new-content">
+        <fieldset>
+            <label for="f_fname">First Name</label>
+            <input required id="f_fname" name="TeacherFName" />
+        </fieldset>
+        <fieldset>
+            <label for="f_lname">Last Name</label>
+            <input required id="f_lname" name="TeacherLName" />
+        </fieldset>
+        <fieldset>
+            <label for="f_eid">Employee Number</label>
+            <input required id="f_eid" name="EmployeeNumber" />
+        </fieldset>
+        <fieldset>
+            <label for="f_hiredate">Hire Date</label>
+            <input required type="date" id="f_hiredate" name="HireDate"/>
+        </fieldset>
+        <fieldset>
+            <label for="f_salary">Salary</label>
+            <input requred id="f_salary" name="SalaryStr" />
+        </fieldset>
+        <fieldset>
+            <input type="submit" value="Submit" class="btn btn-success" />
+        </fieldset>
+    </form>
+</div>

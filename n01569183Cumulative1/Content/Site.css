@@ -1,0 +1,98 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #777;
+    border-color: #fff
+}
+
+/** global */
+.go-back-row {
+    padding: 20px 0;
+}
+
+/* Form Styling */
+.popup-container {
+    max-width: 40vw;
+    margin: auto;
+    background: white;
+    border: 2px solid grey;
+    padding: 1.8em;
+}
+
+
+.close {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.new-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-content fieldset {
+    padding: 10px 0 !important;
+    flex: 1;
+    margin: 0;
+    display: grid;
+    column-gap: 4em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.new-content input {
+    max-width:none;
+}
+
+.new-content fieldset label {
+    margin: 0;
+    display: flex;
+    align-items:center;
+
+}
+
+.new-content fieldset input {
+    grid-column: 2 / span 3;
+}
+
+.new-content fieldset input[type="submit"]{
+    grid-column: 4;
+    place-self:right;
+}
+
+.popup-bg {
+    background: #000000b4;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display:grid;
+    place-items:center;
+}
+
+
+.popup {
+    z-index:3;
+}
+
+.row {
+    color:black;
+}

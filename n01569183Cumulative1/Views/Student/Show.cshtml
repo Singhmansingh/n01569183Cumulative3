@@ -1,0 +1,35 @@
+﻿@model n01569183Cumulative2.Models.Student
+@{
+    ViewBag.Title = "Show";
+}
+<div class="go-back-row">
+    <a href="~/Student/List">< Return to List</a>
+</div>
+<h1> @Model.StudentFName @Model.StudentLName</h1>
+<p class="caption">Student</p>
+<hr />
+<h2>General Information</h2>
+<table class="table">
+    <tr>
+        <th>Student Number</th>
+        <th>Enroll Date</th>
+    </tr>
+    <tr>
+        <td>@Model.StudentNumber</td>
+        <td>@Model.EnrolDate.ToString("D")</td>
+    </tr>
+</table>
+<h2>Enrolled Classes</h2>
+<table class="table">
+    <tr>
+        <th>Class Number</th>
+        <th>Class Code</th>
+    </tr>
+    @foreach(var studentClass in Model.StudentClassList)
+            {
+                <tr>
+                    <td><a href="~/Class/show/@studentClass.ClassId">@studentClass.ClassCode</a></td>
+                    <td>@studentClass.ClassName</td>
+                </tr>
+            }
+</table>

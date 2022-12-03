@@ -1,0 +1,16 @@
+﻿@model n01569183Cumulative2.Models.Teacher
+@{
+    Layout = "";
+}
+
+<div class="popup-container">
+    <button id="close" class="close" onclick="ClosePopup()">✖</button>
+
+    <h3>Confirm Deletion</h3>
+
+    <p>Are you sure you want to remove  Teacher "@Model.FName @Model.LName"?</p>
+    <form method="post" action="/Teacher/Delete/@Model.Id">
+        <button type="button" onclick="ClosePopup()" href="/Teacher/Show/@Model.Id" class="btn btn-primary">Cancel</button>
+        <input class="btn btn-danger" type="submit" value="Delete" />
+    </form>
+</div>

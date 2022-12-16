@@ -1,4 +1,4 @@
-namespace n01569183Cumulative2.Areas.HelpPage
+namespace n01569183Cumulative3.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

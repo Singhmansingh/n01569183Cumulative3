@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace n01569183Cumulative2.Models
+namespace n01569183Cumulative3.Models
 {
     public class Student
     {

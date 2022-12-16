@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace n01569183Cumulative2.Areas.HelpPage.ModelDescriptions
+namespace n01569183Cumulative3.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

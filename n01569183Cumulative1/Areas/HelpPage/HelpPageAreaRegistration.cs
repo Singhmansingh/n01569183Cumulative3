@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace n01569183Cumulative2.Areas.HelpPage
+namespace n01569183Cumulative3.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

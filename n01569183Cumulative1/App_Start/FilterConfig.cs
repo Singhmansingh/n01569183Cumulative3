@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace n01569183Cumulative2
+namespace n01569183Cumulative3
 {
     public class FilterConfig
     {

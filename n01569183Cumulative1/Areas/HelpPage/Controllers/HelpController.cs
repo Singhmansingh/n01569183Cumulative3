@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using n01569183Cumulative2.Areas.HelpPage.ModelDescriptions;
-using n01569183Cumulative2.Areas.HelpPage.Models;
+using n01569183Cumulative3.Areas.HelpPage.ModelDescriptions;
+using n01569183Cumulative3.Areas.HelpPage.Models;
 
-namespace n01569183Cumulative2.Areas.HelpPage.Controllers
+namespace n01569183Cumulative3.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

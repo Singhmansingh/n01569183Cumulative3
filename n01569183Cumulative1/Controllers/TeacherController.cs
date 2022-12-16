@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using n01569183Cumulative2.Models;
+using n01569183Cumulative3.Models;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
-namespace n01569183Cumulative2.Controllers
+namespace n01569183Cumulative3.Controllers
 {
     public class TeacherController : Controller
     {

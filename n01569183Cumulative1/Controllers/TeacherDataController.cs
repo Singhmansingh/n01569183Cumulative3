@@ -1,6 +1,6 @@
 ﻿using Microsoft.Ajax.Utilities;
 using MySql.Data.MySqlClient;
-using n01569183Cumulative2.Models;
+using n01569183Cumulative3.Models;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Linq.Expressions;
 
-namespace n01569183Cumulative2.Controllers
+namespace n01569183Cumulative3.Controllers
 {
     public class TeacherDataController : ApiController
     {

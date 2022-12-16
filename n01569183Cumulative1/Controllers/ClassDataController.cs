@@ -133,6 +133,37 @@ namespace n01569183Cumulative3.Controllers
             return SelectedClass;
         }
 
+        /// <summary>
+        /// Update a class
+        /// </summary>
+        /// <param name="id">Integer. Class to Update</param>
+        /// <param name="UpdateClass">Class object</param>
+        /// <returns>Integer. Affected Rows</returns>
+        [HttpPost]
+        [Route("api/ClassData/UpdateClass/{id}")]
+
+        public int UpdateClass(int id, [FromBody] Class UpdateClass)
+        {
+            MySqlConnection Conn = School.AccessDatabase();
+
+            Conn.Open();
+            string query = "UPDATE classes SET classname = @classname, classcode = @classcode, teacherid = @teacherid, startdate = @startDate, finishdate = @finishDate WHERE classid = @id";
+            MySqlCommand cmd = Conn.CreateCommand();
+            cmd.CommandText = query;
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@classname", UpdateClass.ClassName);
+            cmd.Parameters.AddWithValue("@classcode", UpdateClass.ClassCode);
+
+            cmd.Parameters.AddWithValue("@teacherid", UpdateClass.TeacherId);
+            cmd.Parameters.AddWithValue("@startDate", UpdateClass.StartDate);
+            cmd.Parameters.AddWithValue("@finishDate", UpdateClass.FinishDate);
+            cmd.Prepare();
+
+            int AffectedRows = cmd.ExecuteNonQuery();
+
+            return AffectedRows;
+        }
+
         [HttpPost]
         [Route("api/ClassData/RemoveTeacher")]
 

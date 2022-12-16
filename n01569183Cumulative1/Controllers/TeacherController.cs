@@ -33,6 +33,13 @@ namespace n01569183Cumulative3.Controllers
         {
             return View();
         }
+        public ActionResult Update(int id)
+        {
+            TeacherDataController teacherDatacontroller = new TeacherDataController();
+            Teacher teacher = teacherDatacontroller.SelectTeacher(id);
+            return View(teacher);
+        }
+
 
         // POST: Teacher/Create
         [HttpPost]
@@ -53,6 +60,29 @@ namespace n01569183Cumulative3.Controllers
             int TeacherId = controller.AddTeacher(NewTeacher);
             Debug.WriteLine(TeacherId);
             if (TeacherId > 0) return RedirectToAction("List");
+            return View();
+        }
+
+        // POST: Teacher/Update/{ID}
+        [HttpPost]
+        public ActionResult UpdateTeacher(int id, string TeacherFName, string TeacherLName, string EmployeeNumber, DateTime HireDate, string SalaryStr = "0")
+        {
+            decimal Salary = Convert.ToDecimal(SalaryStr);
+
+            Teacher NewTeacher = new Teacher()
+            {
+                Id = id,
+                FName = TeacherFName,
+                LName = TeacherLName,
+                EmployeeNumber = EmployeeNumber,
+                HireDate = HireDate,
+                Salary = Salary
+            };
+
+
+            TeacherDataController controller = new TeacherDataController();
+            int res = controller.UpdateTeacher(id, NewTeacher);
+            if (res > 0) return RedirectToAction("List");
             return View();
         }
 

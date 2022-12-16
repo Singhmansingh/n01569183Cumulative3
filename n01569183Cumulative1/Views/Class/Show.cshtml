@@ -21,6 +21,10 @@
         <td><a href="~/Teacher/Show/@Model.TeacherData.Id">@Model.TeacherData.EmployeeNumber - @Model.TeacherData.FName @Model.TeacherData.LName</a></td>
     </tr>
 </table>
+<div>
+    <button id="Edit" onclick="EditClass()" class="btn btn-primary">Edit Class</button>
+
+</div>
 <h2>Student List</h2>
 <table class="table">
     <tr>
@@ -39,4 +43,44 @@
 
 </table>
 
+<div id="FullScreenDark" class="popup-bg hide">
+    <div id="PopupForm" class="popup"></div>
+</div>
 
+<script>
+    function gid(id) {
+        return document.getElementById(id);
+    }
+
+    function EditClass() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', '/Class/Update/@Model.ClassId', true);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                gid("PopupForm").innerHTML = xhr.responseText;
+                gid("FullScreenDark").classList.toggle('hide');
+                gid("UpdateForm").onsubmit = ValidateForm;
+            }
+        }
+    }
+
+    function ValidateForm() {
+        var form = document.forms.UpdateClassForm;
+        var ClassCodeRegEx = /^([a-zA-Z]){3,4}\d\d\d\d$/;
+
+        function failedMsg(msg) {
+            alert(msg);
+            return false;
+        }
+
+
+        if (!ClassCodeRegEx.test(form.ClassCode.value)) return failedMsg("Invald Course Code. can only be (AAAA####)");
+        if (form.TeacherId.value == 0) return failedMsg("Please select a Teacher");
+    }
+
+    function ClosePopup() {
+        gid("FullScreenDark").classList.toggle('hide');
+    }
+</script>

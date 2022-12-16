@@ -1,0 +1,34 @@
+﻿@model n01569183Cumulative3.Models.Teacher
+@{
+    ViewBag.Title = "Update";
+    Layout = "";
+}
+<div class="popup-container">
+    <button id="close" class="close" onclick="ClosePopup()">✖</button>
+    <h2>Update Teacher #@Model.Id</h2>
+    <form name="UpdateForm" method="post" action="/Teacher/UpdateTeacher/@Model.Id" class="new-content" id="UpdateForm">
+        <fieldset>
+            <label for="f_fname">First Name</label>
+            <input required id="f_fname" name="TeacherFName" value="@Model.FName" />
+        </fieldset>
+        <fieldset>
+            <label for="f_lname">Last Name</label>
+            <input required id="f_lname" name="TeacherLName" value="@Model.LName"/>
+        </fieldset>
+        <fieldset>
+            <label for="f_eid">Employee Number</label>
+            <input required id="f_eid" name="EmployeeNumber" value="@Model.EmployeeNumber"/>
+        </fieldset>
+        <fieldset>
+            <label for="f_hiredate">Hire Date</label>
+            <input required type="date" id="f_hiredate" name="HireDate" value="@Model.HireDate.ToShortDateString()"/>
+        </fieldset>
+        <fieldset>
+            <label for="f_salary">Salary</label>
+            <input requred id="f_salary" name="SalaryStr" value="@Model.Salary"/>
+        </fieldset>
+        <fieldset>
+            <button type="submit" value="" class="btn btn-success">Submit</button>
+        </fieldset>
+    </form>
+</div>

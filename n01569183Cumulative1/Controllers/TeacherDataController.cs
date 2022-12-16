@@ -152,7 +152,11 @@ namespace n01569183Cumulative3.Controllers
 
         }
 
-
+        /// <summary>
+        /// Adds anew Teacher to the data base
+        /// </summary>
+        /// <param name="teacher">Teacher Object</param>
+        /// <returns>Integer. Number of rows affected</returns>
         [HttpPost]
         [Route("api/TeacherData/AddTeacher")]
         public int AddTeacher([FromBody] Teacher teacher)
@@ -191,6 +195,10 @@ namespace n01569183Cumulative3.Controllers
             return Res;
         }
 
+        /// <summary>
+        /// Removes a Teacher from the Database
+        /// </summary>
+        /// <param name="TeacherId">Integer. ID of the teacher</param>
         [HttpPost]
         [Route("api/TeacherData/DeleteTeacher")]
         public void DeleteTeacher([FromBody]int TeacherId)
@@ -213,6 +221,58 @@ namespace n01569183Cumulative3.Controllers
 
         }
 
+        /// <summary>
+        /// Updates an existing Teacher in the Database
+        /// </summary>
+        /// <param name="TeacherId">Integer. ID of the teacher</param>
+        /// <param name="teacher">Teacher. Object data to update</param>
+        /// <returns>Integer. Number of rows affected</returns>
+    
+        [HttpPost]
+        [Route("api/TeacherData/UpdateTeacher/{TeacherId}")]
+        public int UpdateTeacher( int TeacherId, [FromBody] Teacher teacher)
+        {
+            MySqlConnection Conn = School.AccessDatabase();
+            Conn.Open();
+
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            string query = "UPDATE teachers SET "
+                + "teacherfname = @fname, "
+                + "teacherlname = @lname, "
+                + "hiredate = @hiredate, "
+                + "salary = @salary, "
+                + "employeenumber = @eid "
+                + "WHERE teacherid = @id";
+
+            cmd.CommandText = query;
+
+            cmd.Parameters.AddWithValue("@fname", teacher.FName);
+            cmd.Parameters.AddWithValue("@lname", teacher.LName);
+            cmd.Parameters.AddWithValue("@eid", teacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@hiredate", teacher.HireDate);
+            cmd.Parameters.AddWithValue("@salary", teacher.Salary);
+            cmd.Parameters.AddWithValue("@id", TeacherId);
+
+            cmd.Prepare();
+
+            int Res = cmd.ExecuteNonQuery();
+            if (Res > 0)
+            {
+                cmd.CommandText = "SELECT MAX(teacherid) AS teacherid FROM Teachers";
+                MySqlDataReader RowData = cmd.ExecuteReader();
+                int NewId = 0;
+                while (RowData.Read())
+                {
+                    NewId = Convert.ToInt32(RowData["teacherid"]);
+                }
+                Conn.Close();
+                return NewId;
+            }
+
+            Conn.Close();
+            return Res;
+        }
 
         // Converts the string into a symbol
         private string GetOpperator(string param)

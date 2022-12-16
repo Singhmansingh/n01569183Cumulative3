@@ -1,0 +1,49 @@
+﻿@model n01569183Cumulative3.Models.Class
+@using n01569183Cumulative3.Controllers
+@using n01569183Cumulative3.Models
+@{
+    ViewBag.Title = "Update";
+    Layout = "";
+
+}
+
+<div class="popup-container">
+    <button id="close" class="close" onclick="ClosePopup()">✖</button>
+
+    <h2>Update</h2>
+    <form name="UpdateClassForm" id="UpdateForm" method="post" action="/Class/UpdateClass/@Model.ClassId" class="new-content">
+        <fieldset>
+            <label for="f_className">Class Name</label>
+            <input id="f_className" name="ClassName" value="@Model.ClassName" />
+        </fieldset>
+        <fieldset>
+            <label for="f_classCode">Class Code</label>
+            <input id="f_classCode" name="ClassCode" value="@Model.ClassCode" />
+        </fieldset>
+        <fieldset>
+            <label>Teacher</label>
+            <select name="TeacherId">
+                <option value="0" selected>Choose a Teacher</option>
+                @{
+                    TeacherDataController controller = new TeacherDataController();
+                    IEnumerable<Teacher> Teachers = controller.ListTeachers();
+                    foreach (Teacher teach in Teachers)
+                    {
+                        bool isSelected = (teach.Id == Model.TeacherId) ? true : false;
+                        <option value="@teach.Id" selected="@isSelected">@teach.FName @teach.LName</option>
+                    }
+                }
+            </select>
+        </fieldset>
+        <fieldset>
+            <label for="f_start">Start Date</label>
+            <input id="f_start" type="date" name="StartDate" value="@Model.StartDate.ToShortDateString()" />
+        </fieldset>
+        <fieldset>
+            <label for="f_finish">Finish Date</label>
+            <input id="f_finish" type="date" name="FinishDate" value="@Model.FinishDate.ToShortDateString()" />
+        </fieldset>
+
+        <input type="submit" value="Update" class="btn btn-success" />
+    </form>
+</div>
